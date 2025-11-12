@@ -1,9 +1,11 @@
 import duckdb
 import os
-from dotenv import load_dotenv
-load_dotenv()
+import streamlit as st
+ 
 
-DB_PATH = os.getenv("DUCKDB_PATH", "./data/ecom.duckdb")
+# DB_PATH = os.getenv("DUCKDB_PATH", "./data/ecom.duckdb")
+DB_PATH = st.secrets.get("DUCKDB_PATH", "./ecom.duckdb")
+
 
 def get_conn():
     return duckdb.connect(DB_PATH, read_only=False)
